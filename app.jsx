@@ -35,3 +35,45 @@ function App() {
     // עם שינוי קטן: במקום רשימה קבועה, נריץ מפה על ה-tasks[persona]
   );
 }
+import { Award, Zap, Star, ShieldCheck, Trophy } from 'lucide-react';
+
+// ... בתוך פונקציית ה-App
+const badges = [
+  { id: 1, name: "הצעד הראשון", icon: <Zap />, requirement: 1, desc: "ביצעת את המשימה הראשונה שלך!" },
+  { id: 2, name: "מתמיד/ה", icon: <Star />, requirement: 3, desc: "3 משימות הושלמו בהצלחה." },
+  { id: 3, name: "אלוף/ת הביטחון", icon: <Trophy />, requirement: 5, desc: "הגעת ליעד היומי המלא!" },
+  { id: 4, name: "חסינות", icon: <ShieldCheck />, requirement: 10, desc: "רצף של 10 משימות." }
+];
+
+// תצוגת הגלריה בתוך ה-Main Content[cite: 2]
+<section style={{ marginTop: '40px' }}>
+  <h3 style={{ marginBottom: '20px' }}>ארון הגביעים שלך</h3>
+  <div style={{ 
+    display: 'grid', 
+    gridTemplateColumns: 'repeat(auto-fill, minmax(150px, 1fr))', 
+    gap: '20px' 
+  }}>
+    {badges.map(badge => (
+      <div key={badge.id} style={{
+        backgroundColor: 'white',
+        padding: '20px',
+        borderRadius: 'var(--radius)',
+        textAlign: 'center',
+        boxShadow: 'var(--shadow)',
+        opacity: completedTasks >= badge.requirement ? 1 : 0.4,
+        filter: completedTasks >= badge.requirement ? 'none' : 'grayscale(100%)',
+        transition: 'all 0.4s ease',
+        border: completedTasks >= badge.requirement ? '2px solid var(--primary)' : '2px solid transparent'
+      }}>
+        <div style={{ 
+          color: completedTasks >= badge.requirement ? 'var(--primary)' : '#ccc',
+          marginBottom: '10px'
+        }}>
+          {badge.icon}
+        </div>
+        <h4 style={{ margin: '5px 0', fontSize: '14px' }}>{badge.name}</h4>
+        <p style={{ fontSize: '11px', color: '#888' }}>{badge.desc}</p>
+      </div>
+    ))}
+  </div>
+</section>
