@@ -16,3 +16,18 @@ body {
   color: var(--text-main);
   margin: 0;
 }
+.persona-btn {
+  padding: 20px 40px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  border: 2px solid var(--primary);
+  border-radius: var(--radius);
+  background: white;
+  transition: all 0.3s;
+}
+
+.persona-btn:hover {
+  background: var(--primary);
+  color: white;
+}
